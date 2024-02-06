@@ -2,10 +2,8 @@ import Link from 'next/link'
 import React, { useState, useContext } from 'react'
 import { useRouter } from "next/navigation";
 import { message } from 'antd';
-import cookie from "js-cookie"
 import { auth } from '@/config/firebase/';
 import AppContext from '../appContext';
-import { db } from "@/config/firebase"
 import { sendPasswordResetEmail } from 'firebase/auth';
 
 const Login = () => {
@@ -28,11 +26,7 @@ const Login = () => {
 
 
             await sendPasswordResetEmail(auth, newUser.email)
-            message.success("Check your Gmail")
-
-            // setTimeout(() => {
-            //     router.push("/login");
-            // }, 3000); // 3000 milliseconds = 3 seconds
+            message.success("Check your email")
         }
         catch (err) {
             message.error("Error")
@@ -40,9 +34,6 @@ const Login = () => {
         }
 
     }
-
-
-
 
     return (
         <div>
